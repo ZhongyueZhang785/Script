@@ -1,4 +1,4 @@
-# **Read Me**
+# **Readme**
 This script contains four function to measure fuse kernel
 
 1. Latency
@@ -12,7 +12,7 @@ This script contains four function to measure fuse kernel
 5. Hardware event ( perf stat)
    
    
-## **Install libfuse**
+# **Install libfuse**
 
 ### Install Meson
 
@@ -42,7 +42,7 @@ https://github.com/libfuse/libfuse
 
 
 
-## **Prepration before test**
+# **Prepration before test**
 1. please set up the variable in VARIABLE
 
 2. install the following pacakage
@@ -60,6 +60,7 @@ git clone https://github.com/brendangregg/FlameGraph
 
 3. change the source in every xx_script.sh file
 
+# **Performance Test**
 ## Step1: run fio_cross_script.sh
 ### Input: 
 cpu start number and cpu ending number
@@ -99,6 +100,7 @@ the cpu core number of fio and fuse
 
 ## Step5: perf stat event
 run the following command
+````
 source xxx/Script/VARIABLE
 source /home/azureuser/zzy/libfuse/example/Script/VARIABLE
 OUTPUT_PATH=''$sadd'/result/perf_stat'
@@ -108,6 +110,7 @@ script $OUTPUT_PATH
 	input the cpu number of fio and fuse you want
 exit
 run perf_stat_hardware_event_script.sh and enter the feature you want
+````
 
 ### Output:
 1. ./Script/perf_stat: the record of all output
