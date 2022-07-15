@@ -46,7 +46,7 @@ def perf_stat_event(input,output):
                         result["cpu_utilized"] = float(datalist[4])
                     if "not supported" not in line:
                         datalist = line.split()
-                        result[name] = float(datalist[0])
+                        result[name] = float(datalist[0].replace(",",""))
                     if name == "iTLB-loads":
                         d = pd.DataFrame([result])
                         df = df.append(d,ignore_index=True)
