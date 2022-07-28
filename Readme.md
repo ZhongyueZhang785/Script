@@ -60,13 +60,13 @@ git clone https://github.com/brendangregg/FlameGraph
 
 3. change the source in every xx_script.sh file
 
-# **Performance Test**
+<!-- # **Performance Test**
 ## Step1: run fio_cross_script.sh
 ### Input: 
 cpu start number and cpu ending number
 ### Output:
 1. ./Script/result/fio_result_cross: the output of bash
-2. ./Script/result/fio_result_cross.csv: the latency result of different combination of fio cpu core and fuse cpu core
+2. ./Script/result/fio_result_cross.csv: the latency result of different combination of fio cpu core and fuse cpu core -->
 
 
 ## Step2: run fio_depth_script
@@ -79,14 +79,14 @@ besides, you could also choose the graph you want to draw
 3.  ./Script/result/fio_result_depth.csv: the stat result of differnt combination of the fio cpu core and fuse cpu core under different depth
 
 
-## Step3: run off_on_cpu_script.sh
+<!-- ## Step3: run off_on_cpu_script.sh
 ### Input:
 the cpu core number of fio and fuse
 ### Output:
 1. ./Script/result/fuse_x_fio_x/record: the running command and fio output
 2. ./Script/result/fuse_x_fio_x/script: perf script
 3. ./Script/result/fuse_x_fio_x/timehist: perf timehist
-4. ./Script/result/on_off_cpu.csv: the result of on and off cpu time
+4. ./Script/result/on_off_cpu.csv: the result of on and off cpu time -->
 
 
 ## Step4: run cpu_flamegraph.sh
