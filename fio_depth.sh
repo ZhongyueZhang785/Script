@@ -6,7 +6,6 @@ while (($flag >0));
 do
     read -p "Enter fio cpu: " fio_cpu
     read -p "Enter fuse cpu: " file_cpu
-    taskset -c $file_cpu $add/$name /tmp/fuse -s
 
     echo '------------------------------------------------------'
     echo '1. print cpu setting----------------------------------'
