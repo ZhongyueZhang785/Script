@@ -1,5 +1,5 @@
 #! /bin/bash
-source /home/azureuser/zzy/libfuse/example/Script/VARIABLE
+source /home/azureuser/zzy/abcdzz1/libfuse/build/Script/VARIABLE
 
 cd $sadd
 mkdir $sadd/result

@@ -1,4 +1,4 @@
-source /home/azureuser/zzy/libfuse/example/Script/VARIABLE
+source /home/azureuser/zzy/abcdzz1/libfuse/build/Script/VARIABLE
 
 mkdir $sadd/result
 mkdir $sadd/result/perf_stat_folder

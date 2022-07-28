@@ -33,9 +33,9 @@ def perf_stat_event(input,output):
     with open(input, 'r', encoding='utf-8') as f:
         for line in f:
             if "Fuse taskset for cpu" in line:
-                result["fuse_cpu"] = int(line.split(":")[-1])
+                result["fuse_cpu"] = line.split(":")[-1]
             if "Fio taskset for cpu" in line:
-                result["fio_cpu"] = int(line.split(":")[-1])
+                result["fio_cpu"] = line.split(":")[-1]
             if "Depth:" in line:
                 result["QD"] = int(line.split(":")[-1])
             for name in name_list:

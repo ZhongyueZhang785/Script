@@ -1,0 +1,2 @@
+/home/azureuser/zzy/abcdzz1/libfuse/build/example/hello_ll /tmp/fuse 
+perf record -e sched:sched_stat_sleep -e sched:sched_switch -e sched:sched_process_exit -a -g -o perf.data --fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1| tee ''/home/azureuser/zzy/abcdzz1/libfuse/build/Script'/result/fuse_'random'_fio_'random'/record_cpu'

@@ -1,5 +1,5 @@
 #! /bin/bash
-source /home/azureuser/zzy/libfuse/example/Script/VARIABLE
+source /home/azureuser/zzy/abcdzz1/libfuse/build/Script/VARIABLE
 
 echo "---------------Calculate off/on cpu time----------------------"
 read -p "Do you want to contine? if yes, please input 1: " flag

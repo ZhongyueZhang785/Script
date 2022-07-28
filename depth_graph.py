@@ -4,8 +4,8 @@ def draw(feature,output_address):
     df_diff = pd.DataFrame()
     for i in range(len(df)):
         if df.loc[i]['QD'] ==1:
-            file_cpu = int(df.loc[i]["fuse_cpu"])
-            fio_cpu = int(df.loc[i]["fio_cpu"])
+            file_cpu = df.loc[i]["fuse_cpu"]
+            fio_cpu = df.loc[i]["fio_cpu"]
             column_name = "fuse_"+str(file_cpu)+"_fio_"+str(fio_cpu)
             if file_cpu == fio_cpu:
                 temp = df[start:i+1][['QD',feature]]
@@ -24,19 +24,19 @@ def draw(feature,output_address):
             start = i+1
 
 
-    title_same = feature+"_with_same_core"
-    title_diff = feature+"_with_different_core"
+    title_same = feature+"_with_multithread"
+    # title_diff = feature+"_with_different_core"
 
     title_same_address = output_address+title_same+".png"
-    title_diff_address = output_address+title_diff+".png"
+    # title_diff_address = output_address+title_diff+".png"
 
     fig_same = df_same.plot(x = 'QD',grid=True,title = title_same)
     fig_same = fig_same.get_figure()
     fig_same.savefig(title_same_address)
 
-    fig_diff = df_diff.plot(x = 'QD',grid=True,title = title_diff)
-    fig_diff = fig_diff.get_figure()
-    fig_diff.savefig(title_diff_address)
+    # fig_diff = df_diff.plot(x = 'QD',grid=True,title = title_diff)
+    # fig_diff = fig_diff.get_figure()
+    # fig_diff.savefig(title_diff_address)
 
 import matplotlib.pyplot as plt
 import pandas as pd
