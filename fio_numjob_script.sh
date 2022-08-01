@@ -1,4 +1,4 @@
-source /home/azureuser/zzy/libfuse/build/Script/VARIABLE
+source /home/azureuser/zzy/nonblocking/abcdzz1/libfuse/build/Script/VARIABLE
 
 cd $sadd
 mkdir $sadd/result

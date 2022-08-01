@@ -1,4 +1,4 @@
-sadd="/home/azureuser/zzy/libfuse/build/Script"
-add="/home/azureuser/zzy/libfuse/build/example"
+sadd="/home/azureuser/zzy/nonblocking/abcdzz1/libfuse/build/Script"
+add="/home/azureuser/zzy/nonblocking/abcdzz1/libfuse/build/example"
 name="hello_ll"
 cadd="/home/azureuser/zzy/abcdzz1/libfuse/build/FlameGraph"

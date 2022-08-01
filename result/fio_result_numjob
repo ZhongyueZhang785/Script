@@ -1,0 +1,301 @@
+---------------Test depth MultiThread----------------------
+------------------------------------------------------
+1. print cpu setting----------------------------------
+hello_ll taskset for cpu: random
+Fio taskset for cpu: random
+2. print command line---------------------------------
+/home/azureuser/zzy/nonblocking/abcdzz1/libfuse/build/example/hello_ll /tmp/fuse
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 8
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=8 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 8 processes
+
+fuse-1-ro-1: (groupid=0, jobs=8): err= 0: pid=3654467: Mon Aug  1 07:19:22 2022
+  write: IOPS=318k, BW=1240MiB/s (1301MB/s)(8192MiB/6605msec); 0 zone resets
+    slat (nsec): min=1586, max=35165k, avg=5575.77, stdev=130557.46
+    clat (nsec): min=394, max=41699k, avg=18497.30, stdev=238954.44
+     lat (usec): min=4, max=41703, avg=24.18, stdev=273.81
+    clat percentiles (nsec):
+     |  1.00th=[     908],  5.00th=[    7392], 10.00th=[    8160],
+     | 20.00th=[    8640], 30.00th=[    9024], 40.00th=[    9408],
+     | 50.00th=[    9792], 60.00th=[   14016], 70.00th=[   15552],
+     | 80.00th=[   20096], 90.00th=[   22144], 95.00th=[   27776],
+     | 99.00th=[   37120], 99.50th=[   48896], 99.90th=[  242688],
+     | 99.95th=[ 1777664], 99.99th=[14483456]
+   bw (  MiB/s): min= 1098, max= 1498, per=100.00%, avg=1268.27, stdev=13.89, samples=99
+   iops        : min=281332, max=383628, avg=324676.97, stdev=3555.06, samples=99
+  lat (nsec)   : 500=0.03%, 750=0.45%, 1000=1.48%
+  lat (usec)   : 2=1.05%, 4=0.02%, 10=48.71%, 20=28.12%, 50=19.67%
+  lat (usec)   : 100=0.28%, 250=0.09%, 500=0.03%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.02%, 20=0.02%, 50=0.01%
+  cpu          : usr=5.07%, sys=22.45%, ctx=2161033, majf=0, minf=80
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,2097152,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=1240MiB/s (1301MB/s), 1240MiB/s-1240MiB/s (1301MB/s-1301MB/s), io=8192MiB (8590MB), run=6605-6605msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 7
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=7 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 7 processes
+
+fuse-1-ro-1: (groupid=0, jobs=7): err= 0: pid=3654683: Mon Aug  1 07:19:30 2022
+  write: IOPS=290k, BW=1132MiB/s (1187MB/s)(7168MiB/6334msec); 0 zone resets
+    slat (nsec): min=1666, max=30323k, avg=5585.11, stdev=121640.49
+    clat (nsec): min=395, max=31139k, avg=17632.84, stdev=216180.94
+     lat (usec): min=5, max=31141, avg=23.32, stdev=250.16
+    clat percentiles (nsec):
+     |  1.00th=[     900],  5.00th=[    7392], 10.00th=[    8256],
+     | 20.00th=[    8896], 30.00th=[    9280], 40.00th=[    9536],
+     | 50.00th=[   10560], 60.00th=[   15040], 70.00th=[   15808],
+     | 80.00th=[   17024], 90.00th=[   22144], 95.00th=[   23424],
+     | 99.00th=[   35584], 99.50th=[   42240], 99.90th=[  124416],
+     | 99.95th=[  692224], 99.99th=[11993088]
+   bw (  MiB/s): min=  998, max= 1278, per=100.00%, avg=1147.82, stdev=11.45, samples=84
+   iops        : min=255532, max=327264, avg=293841.33, stdev=2930.31, samples=84
+  lat (nsec)   : 500=0.02%, 750=0.35%, 1000=1.84%
+  lat (usec)   : 2=1.33%, 4=0.04%, 10=43.80%, 20=35.35%, 50=16.96%
+  lat (usec)   : 100=0.19%, 250=0.05%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.02%, 20=0.02%, 50=0.01%
+  cpu          : usr=5.12%, sys=23.29%, ctx=1904031, majf=0, minf=68
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,1835008,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=1132MiB/s (1187MB/s), 1132MiB/s-1132MiB/s (1187MB/s-1187MB/s), io=7168MiB (7516MB), run=6334-6334msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 6
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=6 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 6 processes
+
+fuse-1-ro-1: (groupid=0, jobs=6): err= 0: pid=3654736: Mon Aug  1 07:19:37 2022
+  write: IOPS=281k, BW=1096MiB/s (1149MB/s)(6144MiB/5607msec); 0 zone resets
+    slat (nsec): min=1690, max=31686k, avg=4052.85, stdev=75101.18
+    clat (nsec): min=459, max=24015k, avg=16198.31, stdev=201719.96
+     lat (usec): min=5, max=31708, avg=20.35, stdev=215.62
+    clat percentiles (nsec):
+     |  1.00th=[     980],  5.00th=[    7904], 10.00th=[    8384],
+     | 20.00th=[    8896], 30.00th=[    9152], 40.00th=[    9408],
+     | 50.00th=[    9664], 60.00th=[   13888], 70.00th=[   15424],
+     | 80.00th=[   15808], 90.00th=[   21120], 95.00th=[   22144],
+     | 99.00th=[   33024], 99.50th=[   35072], 99.90th=[   72192],
+     | 99.95th=[  342016], 99.99th=[11993088]
+   bw (  MiB/s): min=  939, max= 1312, per=100.00%, avg=1132.68, stdev=18.96, samples=60
+   iops        : min=240534, max=335894, avg=289966.30, stdev=4853.25, samples=60
+  lat (nsec)   : 500=0.01%, 750=0.30%, 1000=0.96%
+  lat (usec)   : 2=1.21%, 4=0.01%, 10=51.65%, 20=34.79%, 50=10.93%
+  lat (usec)   : 100=0.07%, 250=0.03%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.02%, 20=0.01%, 50=0.01%
+  cpu          : usr=5.91%, sys=26.57%, ctx=1604378, majf=0, minf=65
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,1572864,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=1096MiB/s (1149MB/s), 1096MiB/s-1096MiB/s (1149MB/s-1149MB/s), io=6144MiB (6442MB), run=5607-5607msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 5
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=5 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 5 processes
+
+fuse-1-ro-1: (groupid=0, jobs=5): err= 0: pid=3654780: Mon Aug  1 07:19:44 2022
+  write: IOPS=236k, BW=924MiB/s (968MB/s)(5120MiB/5544msec); 0 zone resets
+    slat (nsec): min=1605, max=17999k, avg=4078.80, stdev=84949.89
+    clat (nsec): min=420, max=32515k, avg=16480.34, stdev=222578.55
+     lat (usec): min=5, max=32520, avg=20.65, stdev=239.29
+    clat percentiles (nsec):
+     |  1.00th=[     972],  5.00th=[    7392], 10.00th=[    8160],
+     | 20.00th=[    8640], 30.00th=[    8896], 40.00th=[    9152],
+     | 50.00th=[    9408], 60.00th=[    9664], 70.00th=[   13248],
+     | 80.00th=[   15552], 90.00th=[   21120], 95.00th=[   22144],
+     | 99.00th=[   33536], 99.50th=[   35072], 99.90th=[  102912],
+     | 99.95th=[ 1646592], 99.99th=[11993088]
+   bw (  KiB/s): min=837672, max=1079764, per=99.60%, avg=941883.25, stdev=15091.04, samples=53
+   iops        : min=209418, max=269940, avg=235470.65, stdev=3772.73, samples=53
+  lat (nsec)   : 500=0.01%, 750=0.25%, 1000=1.02%
+  lat (usec)   : 2=0.88%, 4=0.01%, 10=61.41%, 20=23.96%, 50=12.32%
+  lat (usec)   : 100=0.05%, 250=0.03%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.03%, 20=0.02%, 50=0.01%
+  cpu          : usr=6.20%, sys=27.73%, ctx=1331838, majf=0, minf=62
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,1310720,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=924MiB/s (968MB/s), 924MiB/s-924MiB/s (968MB/s-968MB/s), io=5120MiB (5369MB), run=5544-5544msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 4
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=4 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 4 processes
+
+fuse-1-ro-1: (groupid=0, jobs=4): err= 0: pid=3654819: Mon Aug  1 07:19:51 2022
+  write: IOPS=193k, BW=752MiB/s (789MB/s)(4096MiB/5445msec); 0 zone resets
+    slat (nsec): min=1612, max=19999k, avg=3679.13, stdev=48087.60
+    clat (nsec): min=391, max=28020k, avg=16437.96, stdev=213061.28
+     lat (usec): min=5, max=28023, avg=20.21, stdev=219.13
+    clat percentiles (nsec):
+     |  1.00th=[     924],  5.00th=[    7136], 10.00th=[    8032],
+     | 20.00th=[    8512], 30.00th=[    8896], 40.00th=[    9152],
+     | 50.00th=[    9536], 60.00th=[   13504], 70.00th=[   15040],
+     | 80.00th=[   15808], 90.00th=[   20608], 95.00th=[   21888],
+     | 99.00th=[   31872], 99.50th=[   34048], 99.90th=[   47872],
+     | 99.95th=[  552960], 99.99th=[11993088]
+   bw (  KiB/s): min=704872, max=834704, per=100.00%, avg=773216.90, stdev=9334.23, samples=40
+   iops        : min=176218, max=208676, avg=193303.80, stdev=2333.56, samples=40
+  lat (nsec)   : 500=0.02%, 750=0.36%, 1000=1.44%
+  lat (usec)   : 2=0.67%, 4=0.01%, 10=52.03%, 20=34.24%, 50=11.15%
+  lat (usec)   : 100=0.02%, 250=0.01%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.02%, 20=0.02%, 50=0.01%
+  cpu          : usr=5.89%, sys=28.56%, ctx=1066562, majf=0, minf=44
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,1048576,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=752MiB/s (789MB/s), 752MiB/s-752MiB/s (789MB/s-789MB/s), io=4096MiB (4295MB), run=5445-5445msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 3
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=3 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 3 processes
+
+fuse-1-ro-1: (groupid=0, jobs=3): err= 0: pid=3654851: Mon Aug  1 07:19:57 2022
+  write: IOPS=154k, BW=602MiB/s (631MB/s)(3072MiB/5104msec); 0 zone resets
+    slat (nsec): min=1554, max=16000k, avg=4448.01, stdev=46204.50
+    clat (nsec): min=403, max=32019k, avg=14313.23, stdev=187380.05
+     lat (usec): min=6, max=32029, avg=18.85, stdev=195.03
+    clat percentiles (nsec):
+     |  1.00th=[     692],  5.00th=[    1004], 10.00th=[    7648],
+     | 20.00th=[    8384], 30.00th=[    8896], 40.00th=[    9152],
+     | 50.00th=[    9408], 60.00th=[    9792], 70.00th=[   14400],
+     | 80.00th=[   15552], 90.00th=[   19328], 95.00th=[   21632],
+     | 99.00th=[   23936], 99.50th=[   28544], 99.90th=[   39680],
+     | 99.95th=[  244736], 99.99th=[11993088]
+   bw (  KiB/s): min=564392, max=674616, per=100.00%, avg=623498.76, stdev=10886.67, samples=29
+   iops        : min=141098, max=168654, avg=155874.69, stdev=2721.67, samples=29
+  lat (nsec)   : 500=0.10%, 750=1.14%, 1000=3.70%
+  lat (usec)   : 2=2.10%, 4=0.01%, 10=54.87%, 20=28.72%, 50=9.29%
+  lat (usec)   : 100=0.02%, 250=0.01%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.01%, 20=0.01%, 50=0.01%
+  cpu          : usr=6.72%, sys=27.10%, ctx=817657, majf=0, minf=37
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,786432,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=602MiB/s (631MB/s), 602MiB/s-602MiB/s (631MB/s-631MB/s), io=3072MiB (3221MB), run=5104-5104msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 2
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=2 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+...
+fio-3.16
+Starting 2 processes
+
+fuse-1-ro-1: (groupid=0, jobs=2): err= 0: pid=3654896: Mon Aug  1 07:20:03 2022
+  write: IOPS=108k, BW=423MiB/s (443MB/s)(2048MiB/4843msec); 0 zone resets
+    slat (nsec): min=1604, max=7003.0k, avg=2964.60, stdev=15694.74
+    clat (nsec): min=424, max=20017k, avg=14899.31, stdev=246989.10
+     lat (usec): min=6, max=20020, avg=17.95, stdev=247.50
+    clat percentiles (usec):
+     |  1.00th=[    7],  5.00th=[    7], 10.00th=[    8], 20.00th=[    9],
+     | 30.00th=[    9], 40.00th=[    9], 50.00th=[    9], 60.00th=[    9],
+     | 70.00th=[   10], 80.00th=[   10], 90.00th=[   10], 95.00th=[   11],
+     | 99.00th=[   17], 99.50th=[   18], 99.90th=[   47], 99.95th=[ 6849],
+     | 99.99th=[11863]
+   bw (  KiB/s): min=399400, max=476552, per=100.00%, avg=436983.11, stdev=11919.34, samples=18
+   iops        : min=99850, max=119138, avg=109245.78, stdev=2979.84, samples=18
+  lat (nsec)   : 500=0.02%, 750=0.16%, 1000=0.45%
+  lat (usec)   : 2=0.15%, 4=0.01%, 10=92.63%, 20=6.40%, 50=0.09%
+  lat (usec)   : 100=0.01%, 250=0.01%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.04%, 20=0.02%, 50=0.01%
+  cpu          : usr=8.65%, sys=35.54%, ctx=525879, majf=0, minf=24
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,524288,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=423MiB/s (443MB/s), 423MiB/s-423MiB/s (443MB/s-443MB/s), io=2048MiB (2147MB), run=4843-4843msec
+3. begin fio test without perf----------------------------------
+hello_ll taskset for cpu: random
+Fio test for cpu: random
+Depth: 1
+fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=1 --name=fuse-1-ro-1 --loop=1 --numjobs=1 --group_reporting
+fuse-1-ro-1: (g=0): rw=randwrite, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=1
+fio-3.16
+Starting 1 process
+
+fuse-1-ro-1: (groupid=0, jobs=1): err= 0: pid=3654998: Mon Aug  1 07:20:09 2022
+  write: IOPS=56.1k, BW=219MiB/s (230MB/s)(1024MiB/4674msec); 0 zone resets
+    slat (nsec): min=1580, max=292656, avg=2972.98, stdev=915.00
+    clat (nsec): min=502, max=17522k, avg=14404.29, stdev=237011.59
+     lat (usec): min=7, max=17525, avg=17.46, stdev=237.02
+    clat percentiles (usec):
+     |  1.00th=[    7],  5.00th=[    7], 10.00th=[    7], 20.00th=[    8],
+     | 30.00th=[    9], 40.00th=[    9], 50.00th=[    9], 60.00th=[    9],
+     | 70.00th=[    9], 80.00th=[   10], 90.00th=[   10], 95.00th=[   12],
+     | 99.00th=[   14], 99.50th=[   15], 99.90th=[   24], 99.95th=[ 6915],
+     | 99.99th=[11076]
+   bw (  KiB/s): min=216384, max=236480, per=99.88%, avg=224073.78, stdev=6401.24, samples=9
+   iops        : min=54096, max=59120, avg=56018.44, stdev=1600.31, samples=9
+  lat (nsec)   : 750=0.01%, 1000=0.01%
+  lat (usec)   : 2=0.01%, 10=92.56%, 20=7.32%, 50=0.03%, 100=0.01%
+  lat (usec)   : 250=0.01%, 500=0.01%, 750=0.01%, 1000=0.01%
+  lat (msec)   : 2=0.01%, 4=0.01%, 10=0.04%, 20=0.02%
+  cpu          : usr=7.47%, sys=40.40%, ctx=262189, majf=0, minf=11
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,262144,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+  WRITE: bw=219MiB/s (230MB/s), 219MiB/s-219MiB/s (230MB/s-230MB/s), io=1024MiB (1074MB), run=4674-4674msec
+kill 
