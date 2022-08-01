@@ -1,8 +1,9 @@
-source /home/azureuser/zzy/libfuse/build/Script/VARIABLE
+source /home/azureuser/zzy/nonblocking/abcdzz1/libfuse/build/Script/VARIABLE
 cd $add
 echo "---------------Test depth MultiThread----------------------"
 read -p "Do you want to contine? if yes, please input the depth, if no, please input -1: " flag
-while (($flag >0));
+depth=1
+while (($flag >=$depth));
 do
     fio_cpu="random"
     file_cpu="random"
@@ -14,15 +15,16 @@ do
     echo "$add/$name /tmp/fuse"
     $add/$name /tmp/fuse
     
-    while (($flag>0));
+    while (($flag >=$depth));
     do
         echo '3. begin fio test without perf----------------------------------'
         echo "$name taskset for cpu: $file_cpu"
         echo "Fio test for cpu: $fio_cpu" 
-        echo "Depth:" $flag
-        echo "fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=$flag --name=fuse-1-ro-1 --loop=1"
-        fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=$flag --name=fuse-1-ro-1 --loop=1 
-        ((flag--))
+        echo "Depth:" $depth
+        echo "fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=$depth--name=fuse-1-ro-1 --loop=1"
+        fio --filename=/tmp/fuse/hello --direct=1 --rw=randwrite --bs=4k --ioengine=libaio --iodepth=$depth --name=fuse-1-ro-1 --loop=1 
+        ((depth++))
+        sleep 10
     done
     
     fusermount -u /tmp/fuse
