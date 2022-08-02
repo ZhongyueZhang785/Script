@@ -1,6 +1,6 @@
 import pandas as pd
 import sys
-df = pd.DataFrame(columns=('QD','fuse_cpu', 'fio_cpu', 'min(us)','max(us)','avg(us)','stdev(us)',
+df = pd.DataFrame(columns=('QD','numjobs','fuse_cpu', 'fio_cpu',"IOPS(k)","BW(MiB/s)", 'min(us)','max(us)','avg(us)','stdev(us)',
 'cpu_usr(%)','cpu_sys(%)','cpu_ctx','cpu_majf','cpu_minf'))
 input_address = sys.argv[1]
 output_address = sys.argv[2]
@@ -19,7 +19,17 @@ while line:
         while True:
             if "Depth:" in line:
                 depth = int(line.split(":")[-1])
+                print(depth)
                 result['QD'] = depth
+            elif "Starting" in line:
+                numjobs = int(line.split()[-2])
+                result['numjobs'] = numjobs
+            elif "write" in line and "IOPS" in line and "BW" in line:
+                data_list = line.strip().split(",")
+                IOPS = data_list[0].split("=")[-1][:-1]
+                BW = data_list[1].split("=")[1].split("MiB/s")[0]
+                result["IOPS(k)"] = IOPS
+                result["BW(MiB/s)"] = BW
             elif "lat" in line and "min" in line and "max" in line and "avg" in line and "stdev" in line and "slat" not in line and "clat" not in line:
                 print(line)
                 data_list = line.strip().split(",")
@@ -52,4 +62,3 @@ while line:
     line = f.readline()
 f.close()
 df.to_csv(output_address, index=False)
-

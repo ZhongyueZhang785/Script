@@ -1,4 +1,3 @@
-sadd="/home/azureuser/zzy/libfuse/example/Script"
-add="/home/azureuser/zzy/libfuse/example"
+sadd="/home/zy/libfuse/build/Script"
+add="/home/zy/libfuse/build/example"
 name="hello_ll"
-cadd="/home/azureuser/zzy/libfuse/example/FlameGraph"
