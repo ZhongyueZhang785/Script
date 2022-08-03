@@ -6,8 +6,8 @@ depth=1
 fio_cpu="x"
 file_cpu="x"
 
-echo "$add/$name /tmp/fuse -s"
-$add/$name /tmp/fuse -s
+echo "$add/$name /tmp/fuse"
+$add/$name /tmp/fuse
     
 while (($flag >= $depth));
 do
