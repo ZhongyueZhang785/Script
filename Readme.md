@@ -1,6 +1,6 @@
 # **Readme**
 This script contains four function to measure fuse kernel in Atlas
-Now have 4 thread of hello
+Now have multi thread of hello
 
 1. Latency when numjobs = 1 and QD increase
 
