@@ -1,13 +1,13 @@
-source /home/zy/libfuse/build/Script/VARIABLE
+source /home/zy/zzy/baseline4/libfuse/build/Script/VARIABLE
 cd $add
 echo "---------------Test depth----------------------"
 read -p "Please input the max depth you want: " flag
 depth=1
 fio_cpu="x"
-file_cpu=0
+file_cpu="x"
 
-echo "taskset -c $file_cpu $add/$name /tmp/fuse -s"
-taskset -c $file_cpu $add/$name /tmp/fuse -s
+echo "$add/$name /tmp/fuse -s"
+$add/$name /tmp/fuse -s
     
 while (($flag >= $depth));
 do

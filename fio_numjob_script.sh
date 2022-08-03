@@ -1,4 +1,4 @@
-source /home/zy/libfuse/build/Script/VARIABLE
+source /home/zy/zzy/baseline4/libfuse/build/Script/VARIABLE
 
 cd $sadd
 mkdir $sadd/result
